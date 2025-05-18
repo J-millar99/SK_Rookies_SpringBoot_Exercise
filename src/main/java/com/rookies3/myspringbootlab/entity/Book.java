@@ -10,6 +10,9 @@ import java.time.LocalDate;
 @Table(name = "books")
 @Getter @Setter
 @DynamicUpdate
+@Builder
+@NoArgsConstructor
+@AllArgsConstructor
 public class Book {
 
     @Id
@@ -32,4 +35,6 @@ public class Book {
     @Column(nullable = false)
     private LocalDate publishDate;
 
+    @OneToOne(fetch = FetchType.LAZY, mappedBy = "book", cascade = CascadeType.ALL)
+    private BookDetail bookDetail;
 }
