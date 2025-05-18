@@ -63,6 +63,21 @@ public class BookController {
         return ResponseEntity.ok(updatedBook);
     }
 
+    @PatchMapping("/{id}")
+    public ResponseEntity<BookDTO.Response> partialUpdateBook(
+            @PathVariable Long id,
+            @RequestBody BookDTO.PatchRequest request) {
+        BookDTO.Response updateBook = bookService.partialUpdateBook(id, request);
+        return ResponseEntity.ok(updateBook);
+    }
+    @PatchMapping("/{id}.detail")
+    public ResponseEntity<BookDTO.Response> updateBookDetail(
+            @PathVariable Long id,
+            @RequestBody BookDTO.BookDetailPatchRequest request) {
+        BookDTO.Response updatedBook = bookService.updateBookDetail(id, request);
+        return ResponseEntity.ok(updatedBook);
+    }
+
     @DeleteMapping("/{id}")
     public ResponseEntity<Void> deleteBook(@PathVariable Long id) {
         bookService.deleteBook(id);
