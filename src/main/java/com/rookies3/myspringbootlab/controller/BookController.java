@@ -3,6 +3,7 @@ package com.rookies3.myspringbootlab.controller;
 import com.rookies3.myspringbootlab.entity.Book;
 import com.rookies3.myspringbootlab.exception.BusinessException;
 import com.rookies3.myspringbootlab.repository.BookRepository;
+import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -13,10 +14,10 @@ import java.util.Optional;
 
 @RestController
 @RequestMapping("/api/books")
+@RequiredArgsConstructor // final이 붙은 필드와 @NonNull이 붙은 필드를 매개변수로 갖는 생성자를 자동으로 만듦
 public class BookController {
 
-    @Autowired
-    private BookRepository bookRepository;
+    private final BookRepository bookRepository;
 
     // 모든 도서 조회
     @GetMapping
